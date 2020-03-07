@@ -1,9 +1,8 @@
-var router = require('express').Router();
+const routerx = require('express-promise-router');
+const usuarioRouter = require('./usuario');
 
-router.use('/api', require('./api'));
+const router=routerx();
 
-router.use('/', (req, res) => {
-    res.send("b-observer app v1")
-})
+router.use('/user',usuarioRouter);
 
 module.exports = router;

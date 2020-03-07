@@ -33,7 +33,7 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://localhost/conduit', { 
+  mongoose.connect('mongodb+srv://observer:Xijw5RQinoDlOuIO@observer-l325c.mongodb.net/test?retryWrites=true&w=majority', { 
     useCreateIndex: true, 
     useNewUrlParser: true, 
     useUnifiedTopology: true 

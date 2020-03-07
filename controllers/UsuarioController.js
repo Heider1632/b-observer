@@ -115,7 +115,7 @@ module.exports = {
                 let match = await bcrypt.compare(req.body.password,user.password);
                 if (match){
                     let tokenReturn = await token.encode(user);
-                    res.status(200).json({user,tokenReturn});
+                    res.status(200).json(tokenReturn);
                 } else{
                     res.status(404).send({
                         message: 'Password Incorrecto'

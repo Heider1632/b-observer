@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json",
     "mongo:start": "docker run --name realworld-mongo -p 27017:27017 mongo & sleep 5",
     "mongo:stop": "docker stop realworld-mongo && docker rm realworld-mongo"

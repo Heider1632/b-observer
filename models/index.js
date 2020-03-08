@@ -1,6 +1,15 @@
-const Usuario  = require('./usuario');
-
+const User  = require('./user');
+const Charge = require("./charge")
+const Grade = require("./grade")
+const Group = require("./group")
+const Student = require("./student")
+const Observation = require("./observation")
 
 module.exports =  {
-    Usuario,
+    User,
+    Charge,
+    Grade,
+    Group,
+    Student,
+    Observation
 }

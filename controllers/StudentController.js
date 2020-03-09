@@ -27,9 +27,12 @@ module.exports = {
             next(e);
         }
     },
+    chargeExcel: async (req, res, next) => {
+
+    },
     query: async (req,res,next) => {
         try {
-            const reg=await models.Charge.findOne({_id:req.query._id});
+            const reg=await models.Student.findOne({_id:req.query._id});
             if (!reg){
                 res.status(404).send({
                     message: 'El registro no existe'

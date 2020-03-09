@@ -131,6 +131,7 @@ module.exports = {
     listCharge: async (req,res,next) => {
         try {
             const reg=await models.Charge.find({$or:[{'User': req.query.user },{'Grade': req.query.grade }]})
+            .populate('Grade Group User')
             .sort({'createdAt':-1});
             res.status(200).json(reg);
         } catch(e){

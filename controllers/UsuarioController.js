@@ -49,7 +49,7 @@ module.exports = {
     list: async (req,res,next) => {
         try {
             let valor=req.query.valor;
-            const reg=await models.User.find({$or:[{'nombre':new RegExp(valor,'i')},{'email':new RegExp(valor,'i')}]},{createdAt:0})
+            const reg=await models.User.find({$or:[{'name':new RegExp(valor,'i')},{'email':new RegExp(valor,'i')}]})
             .sort({'createdAt':-1});
             res.status(200).json(reg);
         } catch(e){

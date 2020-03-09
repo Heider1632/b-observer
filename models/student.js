@@ -3,8 +3,8 @@ const {Schema}  = require('mongoose');
 const studentSchema = new Schema({
     name: { type:String,maxlength:30, required: true },
     lastname: { type:String,maxlength:50, required:true},
-    age: { type:String },
-    indetification: { type:Number, maxlength:12, required:true},
+    age: { type:Number, maxlength: 3 },
+    identification: { type:Number, maxlength:12, required:true},
     Charge: {
         type: Schema.Types.ObjectId,
         ref: "Charge"

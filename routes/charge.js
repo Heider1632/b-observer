@@ -11,4 +11,8 @@ router.get('/listCharge', chargeController.listCharge);
 router.get('/listGrade', chargeController.listGrade);
 router.get('/listGroup', chargeController.listGroup);
 
+router.get('/queryCharge', chargeController.queryCharge);
+router.get('/queryGrade', chargeController.queryGrade);
+router.get('/queryGroup', chargeController.queryGroup);
+
 module.exports = router;

@@ -11,7 +11,7 @@ module.exports = {
             });
 
             if(reg){
-                await models.Student.findByIdAndUpdate().exec( (err, res) => {
+                await models.Student.findOneAndUpdate({ _id : req.body.Student }, { $push: { "Observation" : reg._id } }, { new: true }).exec( (err, user ) => {
                     if (err) throw err;
                     res.status(200).json(reg);
                 })
@@ -49,7 +49,7 @@ module.exports = {
     },
     list: async (req,res,next) => {
         try {
-            const reg=await models.Observation.find({$or:[{'Student': req.query.user },{'Charge': req.query.charge }]})
+            const reg=await models.Observation.find({$or:[ {'Student': req.query.student },{'User': req.query.user }]})
             .sort({'createdAt':-1});
             res.status(200).json(reg);
         } catch(e){

@@ -8,7 +8,8 @@ const userSchema = new Schema({
     password: { type:String, maxlength:64, required:true},
     Charge: [{
         type: Schema.Types.ObjectId,
-        ref: "Charge"
+        ref: "Charge",
+        default: []
     }]
 }, { timestamps: true });
 

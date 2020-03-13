@@ -15,5 +15,19 @@ const studentSchema = new Schema({
     }]
 }, { timestamps: true });
 
+// studentSchema.methods.getNotification = function() {
+//     return this.aggregate([
+//         { 
+//             $match: {
+//                 createdAt: {
+//                     $gt: new Date(Date.now()).toISOString(),
+//                     $lt: ""
+
+//                 }
+//             }
+//         }
+//     ])
+// };
+
 const Student = mongoose.model('Student',studentSchema);
 module.exports = Student;

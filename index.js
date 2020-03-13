@@ -10,7 +10,7 @@ const router  = require('./routes');
 let password = ""
 mongoose.Promise=global.Promise;
 const dbUrl = 'mongodb+srv://observer:VDLfxSjOxzaxBfge@observer-l325c.mongodb.net/observer?retryWrites=true&w=majority';
-mongoose.connect(dbUrl, {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(dbUrl, {useCreateIndex:true, useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 .then(mongoose => console.log('Conectado a la BD'))
 .catch(err => console.log(err));
 

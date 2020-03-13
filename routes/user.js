@@ -10,6 +10,6 @@ router.put('/update', userController.update);
 router.delete('/remove',auth.verifyAdministrador,userController.remove);
 router.put('/activate',auth.verifyAdministrador,userController.activate);
 router.put('/deactivate',auth.verifyAdministrador,userController.deactivate);
-router.post('/login',usuarioController.login);
+router.post('/login',userController.login);
 
 module.exports = router;

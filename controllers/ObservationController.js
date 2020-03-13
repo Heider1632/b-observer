@@ -49,8 +49,9 @@ module.exports = {
     },
     list: async (req,res,next) => {
         try {
-            const reg=await models.Observation.find({$or:[ {'Student': req.query.student },{'User': req.query.user }]})
+            const reg=await models.Observation.find().populate('Student User')
             .sort({'createdAt':-1});
+
             res.status(200).json(reg);
         } catch(e){
             res.status(500).send({

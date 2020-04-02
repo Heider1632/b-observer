@@ -1,5 +1,6 @@
-const models   = require('../models');
-const mongoose   = require('mongoose');
+const models = require('../models');
+const mongoose = require('mongoose');
+const moment = require("moment");
 
 module.exports = {
     add: async (req,res,next) =>{
@@ -48,9 +49,26 @@ module.exports = {
         }
     },
     list: async (req,res,next) => {
+
         try {
-            const reg=await models.Observation.find().populate('Student User')
-            .sort({'createdAt':-1});
+
+            if (req.query.date){
+                let { year, month, day } = req.query.date;
+
+                var reg=await models.Observation.find({ createdAt : { $lt : new Date(parseInt(year), parseInt(month), parseInt(day)).toISOString() }})
+                .populate('Student User')
+                .sort({'createdAt':-1});
+
+            } else {
+
+                var start = moment().startOf('day'); // set to 12:00 am today
+                var end = moment().endOf('day');
+
+                var reg=await models.Observation.find({ createdAt : { $gte: start, $lt: end }})
+                .populate('Student User')
+                .sort({'createdAt':-1});
+
+            }
 
             res.status(200).json(reg);
         } catch(e){

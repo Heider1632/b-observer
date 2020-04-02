@@ -67,10 +67,11 @@ module.exports = {
                 var reg=await models.Observation.find({ createdAt : { $gte: start, $lt: end }})
                 .populate('Student User')
                 .sort({'createdAt':-1});
-
             }
 
-            res.filter(observation => observation.Student.Charge == req.query.charge)
+            if (reg.length !== 0){
+                reg.filter(observation => observation.Student.Charge == req.query.charge)
+            }
 
             res.status(200).json(reg);
         } catch(e){

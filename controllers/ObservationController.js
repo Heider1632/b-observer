@@ -70,6 +70,8 @@ module.exports = {
 
             }
 
+            res.filter(observation => observation.Student.Charge == req.query.charge)
+
             res.status(200).json(reg);
         } catch(e){
             res.status(500).send({

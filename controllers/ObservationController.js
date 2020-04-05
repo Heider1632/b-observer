@@ -63,7 +63,12 @@ module.exports = {
             .sort({'createdAt':-1});
 
             if(reg.length != 0){
+
+                reg.filter(observation => observation.Student.Charge == req.query.charge)
+
                 notifications = _.groupBy(reg, 'Student.name');
+
+                console.log(Object.keys(notifications));
 
                 //validate 
             }

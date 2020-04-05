@@ -79,7 +79,7 @@ module.exports = {
     },
     queryCharge: async (req,res,next) => {
         try {
-            const reg=await models.Charge.find({_id: req.query._id}).populate('Grade Group User');
+            const reg=await models.Charge.findOne({_id: req.query._id}).populate('Grade Group User');
             if (!reg){
                 res.status(404).send({
                     message: 'El registro no existe'

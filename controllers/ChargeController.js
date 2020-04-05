@@ -130,9 +130,15 @@ module.exports = {
     },
     listCharge: async (req,res,next) => {
         try {
-            const reg=await models.Charge.find()
-            .populate('Grade Group User')
-            .sort({'createdAt':-1});
+            if(req.query.id){
+                var reg=await models.Charge.find({ _id: req.query.id })
+                .populate('Grade Group User')
+                .sort({'createdAt':-1});
+            } else {
+                var reg=await models.Charge.find()
+                .populate('Grade Group User')
+                .sort({'createdAt':-1});
+            }
             res.status(200).json(reg);
         } catch(e){
             res.status(500).send({

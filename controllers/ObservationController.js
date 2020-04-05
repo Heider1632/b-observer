@@ -1,6 +1,7 @@
 const models = require('../models');
 const mongoose = require('mongoose');
 const moment = require("moment");
+const _ = require("lodash")
 
 module.exports = {
     add: async (req,res,next) =>{
@@ -41,6 +42,33 @@ module.exports = {
             } else{
                 res.status(200).json(reg);
             }
+        } catch(e){
+            res.status(500).send({
+                message:'Ocurrió un error'
+            });
+            next(e);
+        }
+    },
+    notifications: async (req,res,next) => {
+
+        try {
+
+            var notifications = [];
+
+            var start = moment().startOf('day'); // set to 12:00 am today
+            var end = moment().endOf('day');
+
+            const reg=await models.Observation.find({ createdAt : { $gte: start, $lt: end }})
+            .populate('Student User')
+            .sort({'createdAt':-1});
+
+            if(reg.length != 0){
+                notifications = _.groupBy(reg, 'Student.name');
+
+                //validate 
+            }
+
+            res.status(200).json(notifications);
         } catch(e){
             res.status(500).send({
                 message:'Ocurrió un error'

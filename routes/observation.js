@@ -5,8 +5,7 @@ const router=routerx();
 
 router.post('/add', observationController.add);
 router.get('/list', observationController.list);
-// router.get('/query', observationController.query);
-// router.post('/update', observationController.update);
-// router.post('/remove', observationController.remove);
+router.get('/query', observationController.query);
+router.get('/notifications', observationController.notifications);
 
 module.exports = router;

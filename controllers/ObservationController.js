@@ -55,22 +55,24 @@ module.exports = {
 
             var notifications = [];
 
-            var start = moment().startOf('day'); // set to 12:00 am today
-            var end = moment().endOf('day');
+            var start = moment().startOf('month').toDate(); 
+            var end = moment().endOf('month').toDate();
 
-            const reg=await models.Observation.find({ createdAt : { $gte: start, $lt: end }})
-            .populate('Student User')
-            .sort({'createdAt':-1});
+            const reg = await models.Student.getNotifications(req.query.charge, start, end);
 
-            if(reg.length != 0){
+            if(reg.length !== 0){
+                reg.map((student, index) => {
+                    notifications.push({
+                        name: student._id.name + " " + student._id.lastname,
+                        body: 'El siguiente estudiante tiene una alerta por varias observaciones',
+                        Observations: []
+                    })
 
-                reg.filter(observation => observation.Student.Charge == req.query.charge)
+                    student.Observation.map(ob => {
+                        notifications[index].Observations.push({ _id: ob._id, text: ob.text })
+                    })
 
-                notifications = _.groupBy(reg, 'Student.name');
-
-                console.log(Object.keys(notifications));
-
-                //validate 
+                })
             }
 
             res.status(200).json(notifications);

@@ -118,7 +118,7 @@ module.exports = {
     },
     update: async (req,res,next) => {
         try {             
-            const reg = await models.Observation.findByIdAndUpdate(...req.body);
+            const reg = await models.Observation.findByIdAndUpdate(req.body._id, { $set: { ...req.body.data } }, { new: true })
             res.status(200).json(reg);
         } catch(e){
             res.status(500).send({
